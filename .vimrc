@@ -17,6 +17,9 @@ Plugin 'christoomey/vim-tmux-navigator'
 " send code snippets to REPL in another tmux pane
 Plugin 'jpalardy/vim-slime'
 
+" formatting yay
+Plugin 'sbdchd/neoformat'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -30,8 +33,8 @@ filetype plugin indent on    " required
 let g:slime_target = "tmux"
 
 " Expect that we're in a tmux environment called 'ocaml', and the REPL is in
-" the 'marked' pane (mark a pane at index i with <C-b> : select-pane -mt i)
-let g:slime_default_config = {"socket_name": "ocaml", "target_pane": "{marked}"}
+" panel %1
+let g:slime_default_config = {"socket_name": "ocaml", "target_pane": "%1"}
 
 let g:opamshare = substitute(system('opam var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
@@ -258,6 +261,12 @@ endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
+" Format with Neoformat on save (requires a formatter installed for the current
+" filetype - e.g., ocamlformat for OCaml)
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * Neoformat
+augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
@@ -367,3 +376,8 @@ for tool in s:opam_packages
   endif
 endfor
 " ## end of OPAM user-setup addition for vim / base ## keep this line
+" ## added by OPAM user-setup for vim / ocp-indent ## a27c8a4c04621745ddc17deee41df98f ## you can edit, but keep this line
+if count(s:opam_available_tools,"ocp-indent") == 0
+  source "/Users/anz/.opam/default/share/ocp-indent/vim/indent/ocaml.vim"
+endif
+" ## end of OPAM user-setup addition for vim / ocp-indent ## keep this line
