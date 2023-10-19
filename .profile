@@ -3,6 +3,10 @@
 bind '"[A":history-search-backward'
 bind '"[B":history-search-forward'
 
+# update .bash_history in realtime
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
 # opam configuration
 [[ ! -r /Users/anz/.opam/opam-init/init.zsh ]] || source /Users/anz/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
