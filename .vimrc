@@ -182,8 +182,13 @@ set lbr
 set tw=500
 
 set ai "Auto indent
-set si "Smart indent
 set wrap "Wrap lines
+
+" Don't auto-unindent comments (as seems to happen on some platforms, based on
+" whatever settings in the local vim installation)
+set cindent
+set indentkeys-=0#
+set cinkeys-=0#
 
 
 """"""""""""""""""""""""""""""
