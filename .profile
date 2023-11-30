@@ -13,6 +13,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Setup for the delightful github.com/nvbn/thefuck
 eval "$(thefuck --alias)"
 
+# enable git completion, if the script is present
+test -f ~/.git-completion.bash && . $_
+
 export PS1="\u@\h:\W \t \\$ \[$(tput sgr0)\]"
 
 source ~/.bashrc
