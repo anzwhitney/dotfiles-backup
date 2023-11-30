@@ -11,7 +11,7 @@ PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Setup for the delightful github.com/nvbn/thefuck
-eval $(thefuck --alias)
+eval "$(thefuck --alias)"
 
 export PS1="\u@\h:\W \t \\$ \[$(tput sgr0)\]"
 
