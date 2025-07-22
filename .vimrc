@@ -84,10 +84,9 @@ set cmdheight=2
 " A buffer becomes hidden when it is abandoned
 set hid
 
-" Configure backspace so it acts as it should act set backspace=eol,start,indent set whichwrap+=<,>,h,l
-
-" Ignore case when searching
-set ignorecase
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
 
 " When searching try to be smart about cases 
 set smartcase
@@ -177,11 +176,10 @@ set tabstop=2
 set lbr
 set tw=500
 
-set ai "Auto indent
+set autoindent
 set wrap "Wrap lines
 
-" Don't auto-unindent comments (as seems to happen on some platforms, based on
-" whatever settings in the local vim installation)
+" Don't auto-unindent comments
 set cindent
 set indentkeys-=0#
 set cinkeys-=0#
