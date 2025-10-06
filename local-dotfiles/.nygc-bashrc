@@ -1,0 +1,112 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+export PATH=$PATH:/usr/pgsql-15/bin/
+
+export PYENV_ROOT=~/.pyenv
+export PATH=$PATH:$PYENV_ROOT/bin/
+eval "$(pyenv init -)"
+
+# make pipenv respect pyenv's python version
+export PIPENV_PYTHON=$(pyenv version-name)
+
+export N_PREFIX=~/.n
+
+# complete partial commands from history with up & down keys
+bind '"[A":history-search-backward'
+bind '"[B":history-search-forward'
+
+# update .bash_history in realtime
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
+# and keep bash history forever
+export HISTFILESIZE=
+export HISTSIZE=
+
+# some bash sessions truncate ~/.bash_history on close
+export HISTFILE=~/.bash_eternal_history
+
+# no need to keep duplicates in history
+export HISTCONTROL=erasedups
+
+# disable the default virtualenv prompt change (breaks custom PS1)
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# ...and add back the virtualenv indicator
+function __virtualenv_ps1 {
+  echo "${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/}) }"
+}
+export PS1="\$(__virtualenv_ps1)\u@\h:\W \t \\$ \[$(tput sgr0)\]"
+
+# enable the delightful The Fuck (github.com/nvbn/thefuck)
+eval "$(thefuck --alias)"
+
+# enable git completion, if the script is present
+test -f ~/.git-completion.bash && source $_
+
+# DELV
+alias taxi=/nfs/sweng/production/taxi/taxi.sh
+export TOOLS=/nfs/sweng/production/taxi/taxi/current/taxi/tools
+
+make_rdt_delv_dir () {
+    sudo -u pipeline mkdir /gpfs/commons/rdt/push/DELV-$1
+}
+
+make_scratch_delv_dir () {
+    DIR=/gpfs/internal/sweng/delivery_management/taxi/production/scratch/DELV-$1
+    mkdir $DIR && cd $DIR
+}
+
+run_with_echo() {
+    echo "$@"
+    echo
+    "$@"
+}
+
+# for when you want to run_with_echo a command with pipes etc,
+# at the cost of creating a new subshell for each command
+run_with_xtrace() (
+    ( set -x ; "$@" )
+)
+
+# DTS
+alias dts-cli=/nfs/sweng/production/data-transport/delivery_cli
+
+make_dts_scratch_dir () {
+    DIR=/nfs/sweng/production/data-transport/dts/DTS-$1
+    mkdir $DIR && cd $DIR
+}
+
+get_jira_attachment () {
+    curl --request GET --url $1 --header "Authorization: Bearer $(cat ~/.jira-pat)" --output $(basename $1)
+}
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/nfs/home/awhitney/google-cloud-sdk/path.bash.inc' ]; then . '/nfs/home/awhitney/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/nfs/home/awhitney/google-cloud-sdk/completion.bash.inc' ]; then . '/nfs/home/awhitney/google-cloud-sdk/completion.bash.inc'; fi
+
+# asdf
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+. <(asdf completion bash)
+
+# terraform/terragrunt
+alias tf-clean="find . -type d -name ".terraform" -exec rm -rf {} \;"
+alias tg-clean="find . -type d -name ".terragrunt-cache" -exec rm -rf {} \;"
