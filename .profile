@@ -7,6 +7,16 @@ bind '"[B":history-search-forward'
 shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
+# and keep bash history forever
+export HISTFILESIZE=
+export HISTSIZE=
+
+# some bash sessions truncate ~/.bash_history on close
+export HISTFILE=~/.bash_eternal_history
+
+# no need to keep duplicates in history
+export HISTCONTROL=erasedups
+
 # Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
