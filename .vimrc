@@ -23,6 +23,12 @@ Plugin 'sbdchd/neoformat'
 " identifier-based and semantic autocompletion
 Plugin 'ycm-core/YouCompleteMe'
 
+" case-preserving search-and-replace
+Plugin 'tpope/vim-abolish'
+
+" toggle quickfix & location lists
+Plugin 'Valloric/ListToggle'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
