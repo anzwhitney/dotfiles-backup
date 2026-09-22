@@ -18,7 +18,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'jpalardy/vim-slime'
 
 " formatting yay
-Plugin 'sbdchd/neoformat'
+Plugin 'google/vim-maktaba'  " dependency of codefmt
+Plugin 'google/vim-codefmt'
 
 " identifier-based and semantic autocompletion
 Plugin 'ycm-core/YouCompleteMe'
@@ -264,11 +265,11 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-" Format with Neoformat on save (requires a formatter installed for the current
+" Format on save with codefmt (may require a formatter installed for the current
 " filetype - e.g., ocamlformat for OCaml)
 augroup fmt
   autocmd!
-  autocmd BufWritePre * Neoformat
+  autocmd BufWritePre * FormatCode
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
