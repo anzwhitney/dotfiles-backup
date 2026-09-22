@@ -41,6 +41,13 @@ filetype plugin indent on    " required
 " Use vim-slime with tmux rather than screen
 let g:slime_target = "tmux"
 
+" YCM options
+let g:ycm_enable_semantic_highlighting=1
+let g:ycm_add_preview_to_completeopt="popup"
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_always_populate_location_list=1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
