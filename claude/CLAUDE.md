@@ -62,7 +62,6 @@ If the auto-mode classifier blocks an action you believe I specifically approved
 
 ### Scratchpad
 
-- **Delete with `rm -r`, not `rm -rf`:** an org-managed `ask` rule prompts me on every `rm -rf`/`rm -fr`, and your own files don't need `-f`.
 - **Never put deliverables there** — it's agent-private and disposable. Anything I need to read, review or keep goes in the relevant repo or `~/Documents/<topic-slug>/` (reuse a fitting folder or create one); tell me the final path. Intermediates can be built there and copied over at the end.
 
 ### code-review-graph
