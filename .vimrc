@@ -20,6 +20,7 @@ Plugin 'jpalardy/vim-slime'
 " formatting yay
 Plugin 'google/vim-maktaba'  " dependency of codefmt
 Plugin 'google/vim-codefmt'
+Plugin 'google/vim-glaive'  " for configuring codefmt
 
 " identifier-based and semantic autocompletion
 Plugin 'ycm-core/YouCompleteMe'
@@ -34,6 +35,8 @@ Plugin 'Valloric/ListToggle'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" Install Glaive for codefmt configuration
+call glaive#Install()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin options
@@ -48,6 +51,9 @@ let g:ycm_add_preview_to_completeopt="popup"
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_always_populate_location_list=1
+
+" Formatting options
+Glaive codefmt google_java_executable='java -jar /Users/awhitney/Applications/google-java-format-1.35.0-all-deps.jar'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
