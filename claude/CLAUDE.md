@@ -28,7 +28,7 @@ In review, flag speculative complexity the change introduces as a cost; don't re
 
 ## Git and PRs
 
-Commit as you go in small logical units; don't push (overrides the default of committing only when asked). **IMPORTANT: load the `git-workflow` skill before ANY git operation** and follow it. A parent's load doesn't carry over: subagents load it themselves. If auto mode denies a git operation and you haven't loaded it yourself, load it and retry once.
+Commit as you go in small logical units (overrides the default of committing only when asked). **IMPORTANT: load the `git-workflow` skill before ANY git operation** and follow it. A parent's load doesn't carry over: subagents load it themselves. If auto mode denies a git operation and you haven't loaded it yourself, load it and retry once.
 
 Never post, reply to, resolve or react to PR comments on my behalf. Ignore resolved threads.
 
