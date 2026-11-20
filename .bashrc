@@ -3,12 +3,16 @@
 export EDITOR=vim
 
 # complete partial commands from history with up & down keys
-bind '"[A":history-search-backward'
-bind '"[B":history-search-forward'
+if [[ $- == *i* ]]; then
+  bind '"[A":history-search-backward'
+  bind '"[B":history-search-forward'
+fi
 
 # update .bash_history in realtime
 shopt -s histappend
-PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+if [[ $- == *i* ]]; then
+  PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+fi
 
 # and keep bash history forever
 export HISTFILESIZE=
